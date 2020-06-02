@@ -3,7 +3,7 @@
     header('Content-Type: application/json');
 
     include_once '../../config/database.php';
-    include_once '../../model/product.php';
+    include_once '../../models/product.php';
 
     $database = new Database();
     $db = $database->connect();
@@ -17,8 +17,7 @@
     $product_arr = array(
         'id' => $product->id,
         'type' => $product->type,
-        'price' => $product->price,
-        'rating' => $product->rating
+        'price' => $product->price
     );
 
     print_r(json_encode($product_arr));
