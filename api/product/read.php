@@ -25,7 +25,8 @@
             $product_item = array(
                 'id' => $id,
                 'type' => $type,
-                'price' => $price
+                'price' => $price,
+                'image' => $image
             );
 
             array_push($product_arr['data'], $product_item);

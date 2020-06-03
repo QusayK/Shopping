@@ -7,6 +7,7 @@
         public $id;
         public $type;
         public $price;
+        public $image;
 
         public function __construct($db) {
 
@@ -35,20 +36,23 @@
             $this->id = $row['id'];
             $this->type = $row['type'];
             $this->price = $row['price'];
+            $this->image = $row['image'];
         }
 
         public function create() {
 
-            $query = 'INSERT INTO ' . $this->table . '(type, price, added_date)
-            VALUES (:type, :price, NOW())';
+            $query = 'INSERT INTO ' . $this->table . '(type, price, added_date, image)
+            VALUES (:type, :price, NOW(), :image)';
 
             $stmt = $this->conn->prepare($query);
 
             $this->type = htmlspecialchars(strip_tags($this->type));
             $this->price = htmlspecialchars(strip_tags($this->price));
+            $this->image = htmlspecialchars(strip_tags($this->image));
 
             $stmt->bindParam(':type', $this->type);
             $stmt->bindParam(':price', $this->price);
+            $stmt->bindParam(':image', $this->image);
 
             if ($stmt->execute()) {
 
@@ -63,16 +67,18 @@
         public function update() {
 
             $query = 'UPDATE`' . $this->table . 
-            '`SET `type` = :type, `price` = :price WHERE `id` = :id';
+            '`SET `type` = :type, `price` = :price, `image` = :image WHERE `id` = :id';
             
             $stmt = $this->conn->prepare($query);
 
             $this->type = htmlspecialchars(strip_tags($this->type));
             $this->price = htmlspecialchars(strip_tags($this->price));
+            $this->image = htmlspecialchars(strip_tags($this->image));
             $this->id = htmlspecialchars(strip_tags($this->id));
 
             $stmt->bindParam(':type', $this->type);
             $stmt->bindParam(':price', $this->price);
+            $stmt->bindParam(':image', $this->image);
             $stmt->bindParam(':id', $this->id);
 
             if ($stmt->execute()) {

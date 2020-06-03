@@ -2,7 +2,7 @@
     class User {
 
         private $conn;
-        private $table;
+        private $table = "users";
 
         public $id;
         public $name;
@@ -16,7 +16,7 @@
 
         public function read_single() {
 
-            $query = 'SELECT * FROM users WHERE id = :id';
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE id = :id';
 
             $stmt =  $this->conn->prepare($query);
             $this->id = htmlspecialchars(strip_tags($this->id));
@@ -35,7 +35,7 @@
 
         public function create() {
 
-            $query = 'INSERT INTO users (name, email, password)
+            $query = 'INSERT INTO ' . $this->table . ' (name, email, password)
             VALUES (:name, :email, :password)';
 
             $stmt = $this->conn->prepare($query);
@@ -45,6 +45,27 @@
             $this->password = htmlspecialchars(strip_tags($this->password));
 
             if ($stmt->execute(['name' => $this->name, 'email' => $this->email, 'password' => $this->password])) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+
+        public function check() {
+
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE email = :email AND password = :password';
+
+            $stmt = $this->conn->prepare($query);
+
+            $this->email = htmlspecialchars(strip_tags($this->email));
+            $this->password = htmlspecialchars(strip_tags($this->password));
+
+            $stmt->execute(['email' => $this->email, 'password' => $this->password]);
+            $num = $stmt->rowCount();
+
+            if ($num > 0) {
 
                 return true;
             } else {

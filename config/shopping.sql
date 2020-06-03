@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2020 at 06:29 PM
+-- Generation Time: Jun 03, 2020 at 10:00 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -30,10 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `classification` (
   `id` int(11) NOT NULL,
-  `favorite` int(11) DEFAULT NULL,
-  `basket` int(11) DEFAULT NULL,
-  `purchased` int(11) DEFAULT NULL
+  `favorite` int(11) NOT NULL DEFAULT 0,
+  `basket` int(11) NOT NULL DEFAULT 0,
+  `purchased` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `classification`
+--
+
+INSERT INTO `classification` (`id`, `favorite`, `basket`, `purchased`) VALUES
+(1, 1, 0, 1),
+(2, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -47,6 +55,16 @@ CREATE TABLE `comments` (
   `product_id` int(11) NOT NULL,
   `comment` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `product_id`, `comment`) VALUES
+(1, 2, 1, 'comment 1'),
+(2, 2, 1, 'comment 2'),
+(3, 4, 14, 'comment 1'),
+(4, 3, 2, 'comment 1');
 
 -- --------------------------------------------------------
 
@@ -69,8 +87,7 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `type`, `price`, `added_date`, `image`) VALUES
 (1, 'clothes', 50, '2020-06-02 12:52:12', ''),
 (2, 'clothes', 35, '2020-06-02 12:52:26', ''),
-(13, 'clothes', 60, '2020-06-02 19:06:41', ''),
-(14, 'clothes', 50, '2020-06-02 19:08:24', '');
+(14, 'clothes', 55, '2020-06-02 19:08:24', '');
 
 -- --------------------------------------------------------
 
@@ -81,8 +98,19 @@ INSERT INTO `products` (`id`, `type`, `price`, `added_date`, `image`) VALUES
 CREATE TABLE `rating` (
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `rating` int(11) NOT NULL
+  `rating` decimal(2,1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`user_id`, `product_id`, `rating`) VALUES
+(1, 2, '3.5'),
+(1, 14, '4.0'),
+(2, 1, '3.5'),
+(3, 2, '4.0'),
+(4, 14, '4.5');
 
 -- --------------------------------------------------------
 
@@ -98,6 +126,16 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(1, 'qusay', 'qusay@gmail.com', '12300'),
+(2, 'ahmad', 'ahmad@gmail.com', '12300'),
+(3, 'mohammad', 'mohammad@gmail.com', '12300'),
+(4, 'ali', 'ali@gmail.com', '12300');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -111,7 +149,9 @@ ALTER TABLE `classification`
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comments_user_fk` (`user_id`),
+  ADD KEY `comments_product_fk` (`product_id`);
 
 --
 -- Indexes for table `products`
@@ -123,8 +163,8 @@ ALTER TABLE `products`
 -- Indexes for table `rating`
 --
 ALTER TABLE `rating`
-  ADD PRIMARY KEY (`product_id`),
-  ADD KEY `rating_user_fk` (`user_id`);
+  ADD PRIMARY KEY (`user_id`,`product_id`),
+  ADD KEY `rating_product_fk` (`product_id`);
 
 --
 -- Indexes for table `users`
@@ -140,7 +180,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -152,11 +192,24 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `classification`
+--
+ALTER TABLE `classification`
+  ADD CONSTRAINT `classification_fk` FOREIGN KEY (`id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_product_fk` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comments_user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rating`

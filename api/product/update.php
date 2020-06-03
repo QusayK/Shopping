@@ -13,9 +13,11 @@
     $product = new Product($db);
 
     $data = json_decode(file_get_contents("php://input"));
+    
     $product->id = $data->id;
     $product->type = $data->type;
     $product->price = $data->price;
+    $product->image = $data->image;
 
     if ($product->update()) {
 

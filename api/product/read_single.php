@@ -17,7 +17,8 @@
     $product_arr = array(
         'id' => $product->id,
         'type' => $product->type,
-        'price' => $product->price
+        'price' => $product->price,
+        'image' => $product->image
     );
 
     print_r(json_encode($product_arr));

@@ -5,28 +5,28 @@
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods,Content-Type, Authorization, X-Requested-With');
 
     include_once '../../config/database.php';
-    include_once '../../models/product.php';
+    include_once '../../models/user.php';
 
     $database = new Database();
     $db = $database->connect();
 
-    $product = new Product($db);
+    $user = new User($db);
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $product->type = $data->type;
-    $product->price = $data->price;
-    $product->image = $data->price;
-
-    if ($product->create()) {
+    $user->email = $data->email;
+    $user->password = $data->password;
+    
+    if ($user->check()) {
 
         echo json_encode(
-            array('message' => 'Product created')
+            array('message' => 'Valid')
         );
     } else {
 
         echo json_encode(
-            array('message' => 'Product not created')
+            array('message' => 'Not valid')
         );
     }
+
 ?>
