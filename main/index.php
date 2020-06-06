@@ -9,27 +9,33 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
         body{
-            background-color: lightgray;
+            background-color: #F2F8FD;
         }
     </style>
 </head>
 <body>
     <div class="container-fluid row m-0 p-0">
-        <div class="col-md-2 m-0 p-0">
-            <div class="collapse" id="navbarToggleExternalContent">
-                <div class="bg-dark p-4">
-                    <h5 class="text-white h4">Shope with us</h5>
-                    <span>We have best products available</span>
-                </div>
+        <nav class="navbar bg-secondary navbar-dark navbar-expand-lg col-md-2 rounded-right shadow">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarToggler" aria-controls="navbarToggler" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav d-flex flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 3</a>
+                    </li>
+                </ul>
             </div>
-            <nav class="navbar navbar-dark bg-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" 
-                    aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </nav>
-        </div>
-        <div class="col-md-10 d-flex flex-wrap justify-content-center mb-5 " id="root"></div>
+        </nav>
+        <div class="col-md-10 d-flex flex-wrap justify-content-center mb-5 p-0" id="root"></div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" i
         ntegrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

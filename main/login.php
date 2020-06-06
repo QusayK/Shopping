@@ -9,12 +9,16 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
         body{
-            background-color: lightgray;
+            background-color: #F2F8FD;
+        }
+
+        .container-fluid{
+            height: 100vh;
         }
     </style>
 </head>
 <body>
-    <div class="container-fluid row d-flex m-0 p-5">
+    <div class="container-fluid row d-flex m-0">
         <form class="col-7 col-md-5 m-auto">
             <div class="form-group">
                 <label for="email">Email address</label>
