@@ -19,14 +19,10 @@
     
     if ($user->check()) {
 
-        echo json_encode(
-            array('message' => 'Valid')
-        );
+        echo 'true';
     } else {
 
-        echo json_encode(
-            array('message' => 'Not valid')
-        );
+        echo 'false';
     }
 
 ?>
