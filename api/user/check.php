@@ -12,17 +12,20 @@
 
     $user = new User($db);
 
-    $data = json_decode(file_get_contents("php://input"));
+    //$data = json_decode(file_get_contents("php://input"));
 
-    $user->email = $data->email;
-    $user->password = $data->password;
-    
-    if ($user->check()) {
+    if (isset($_POST)) {
+        
+        $user->email = $_POST['email'];
+        $user->password = $_POST['password'];
+        
+        if ($user->check()) {
 
-        echo 'true';
-    } else {
+            echo 'true';
+        } else {
 
-        echo 'false';
+            echo 'false';
+        }
     }
 
 ?>

@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="container-fluid row m-0 p-0">
-        <nav class="navbar bg-secondary navbar-dark navbar-expand-lg col-md-2 rounded-right shadow">
+        <nav class="navbar bg-secondary navbar-dark navbar-expand-lg col-md- rounded-right shadow">
             <button class="navbar-toggler" type="button" data-toggle="collapse" 
                 data-target="#navbarToggler" aria-controls="navbarToggler" 
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +24,19 @@
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav d-flex flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link 1</a>
+                        <a class="nav-link" href="#">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link 2</a>
+                        <a class="nav-link" href="#">Favorites</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link 3</a>
+                        <a class="nav-link" href="#">Add product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Basket</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Purchases</a>
                     </li>
                 </ul>
             </div>
@@ -74,7 +80,7 @@
                     products += `<div class="card col-6 col-sm-4 col-md-3 col-lg-2 p-0 mx-1 mt-1 shadow">
                                     <img src=" + '${image}' + " class="card-img-top" alt="Product image">
                                     <div class="card-body">
-                                        <h5 class="card-title">${price}</h5>
+                                        <h5 class="card-title">${price}₪</h5>
                                         <a href="#" class="btn btn-primary">Go somewhere</a>
                                     </div>
                                 </div>`;

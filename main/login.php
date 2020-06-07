@@ -33,50 +33,51 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck">
                 <label class="form-check-label" for="exampleCheck">Check me out</label>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" id="login" class="btn btn-primary">Log in</button>
         </form>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" i
     ntegrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" i
     ntegrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            // AJAX function
+            function xhr(xfunction, url, data) {
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: data, 
+                        dataType: 'JSON',
+                        success: function (result){
+                            xfunction(result);
+                        }
+                    });
+                }
+
+            // Check form user input
+            $('#login').click(function() {
+
+                function check_user(result) {
+                    if (result == true) {
+                        window.location.replace("../main/index.php");
+                    } else if (result == false){
+                        alert('You fucked up in something');
+                    }
+                }
+
+                let email = $('#email').val();
+                let password = $('#password').val();
+                let data = ["email":`${email}`, "password": `${password}`];
+                data = JSON.parse(data);
+                
+                xhr(check_user, '../api/user/check.php', data)
+            });
+        });
+    </script>
 </body>
 </html>
-
-<script>
-   $(document).ready(function() {
-
-         // AJAX function
-         function xhr(xfunction, url, data) {
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: data, 
-                    dataType: 'JSON',
-                    success: function (result){
-                        xfunction(result);
-                    }
-                });
-            }
-
-        // Check form user input
-        $('#login').click(function() {
-            function check_user(result) {
-                if (result) {
-                    window.location.replace("../main/index.php");
-                } else {
-                    alert('You fucked up in something');
-                }
-            }
-
-            let name = $('#name').val();
-            let email = $('#email').val();
-            let password = $('#password').val();
-            let data = ["email":`${email}`, "password": `${password}`];
-            data = JSON.parse(data);
-            
-            xhr(check_user, '../api/user/check.php', data)
-        });
-   });
-</script>
