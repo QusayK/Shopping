@@ -15,11 +15,16 @@
         .container-fluid{
             height: 100vh;
         }
+
+        .form{
+            background-color: #f6f6f6;
+        }
     </style>
 </head>
 <body>
     <div class="container-fluid row d-flex m-0">
-        <form class="col-7 col-md-5 m-auto">
+        <form class="form col-7 col-md-5 m-auto border shadow p-3">
+            <h2 class="py-2">Log in and start your journey with us</h2>
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -33,7 +38,7 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck">
                 <label class="form-check-label" for="exampleCheck">Check me out</label>
             </div>
-            <button type="submit" id="login" class="btn btn-primary">Log in</button>
+            <button type="submit" id="login" class="btn btn-info m-1">Log in</button>
         </form>
     </div>
 
@@ -46,37 +51,34 @@
     <script>
         $(document).ready(function() {
 
-            // AJAX function
-            function xhr(xfunction, url, data) {
-                    $.ajax({
-                        type: 'POST',
-                        url: url,
-                        data: data, 
-                        dataType: 'JSON',
-                        success: function (result){
-                            xfunction(result);
-                        }
-                    });
-                }
-
             // Check form user input
             $('#login').click(function() {
 
-                function check_user(result) {
-                    if (result == true) {
-                        window.location.replace("../main/index.php");
-                    } else if (result == false){
-                        alert('You fucked up in something');
-                    }
-                }
-
                 let email = $('#email').val();
                 let password = $('#password').val();
-                let data = ["email":`${email}`, "password": `${password}`];
-                data = JSON.parse(data);
-                
-                xhr(check_user, '../api/user/check.php', data)
-            });
+                let data = {"email": email, "password": password};
+
+                $.ajax({
+                    type: 'POST',
+                    url: '../api/user/check.php',
+                    data: data, 
+                    dataType: 'JSON',
+                    cache: false,
+                    beforeSend: function() {
+                        $('login').val("Loading..");
+                    },
+                    success: function (result){
+                        console.log(result);
+                        if (result == true) {
+
+                            window.open("index.php");
+
+                        } else {
+                            alert('You fucked up in something');
+                         }
+                    }
+                });
+            });    
         });
     </script>
 </body>

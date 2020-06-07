@@ -67,6 +67,13 @@
 
             if ($num > 0) {
 
+                $query = 'SELECT id FROM ' . $this->table . ' WHERE email = :email AND password = :password';
+                $stm = $this->conn->prepare($query);
+                $stm->execute(['email' => $this->email, 'password' => $this->password]);
+                $result = $stm->fetch(PDO::FETCH_ASSOC);
+
+                $this->id = $result['id'];
+
                 return true;
             } else {
 

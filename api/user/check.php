@@ -1,4 +1,5 @@
 <?php
+    session_start();
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
     header('Access-Control-Allow-Methods: POST');
@@ -12,15 +13,14 @@
 
     $user = new User($db);
 
-    //$data = json_decode(file_get_contents("php://input"));
-
-    if (isset($_POST)) {
+    if (isset($_POST['email']) && isset($_POST['password'])) {
         
-        $user->email = $_POST['email'];
-        $user->password = $_POST['password'];
+        $user->email = json_decode($_POST['email']);
+        $user->password = json_decode($_POST['password']);
         
         if ($user->check()) {
 
+            $_SESSION['login'] = $user->id;
             echo 'true';
         } else {
 
