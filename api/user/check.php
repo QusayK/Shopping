@@ -15,8 +15,8 @@
 
     if (isset($_POST['email']) && isset($_POST['password'])) {
         
-        $user->email = json_decode($_POST['email']);
-        $user->password = json_decode($_POST['password']);
+        $user->email = $_POST['email'];
+        $user->password = $_POST['password'];
         
         if ($user->check()) {
 

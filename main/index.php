@@ -1,3 +1,13 @@
+<?php
+    session_start();
+
+    if (!isset($_SESSION['login'])) {
+
+        header("Location: login.php");
+        die();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +25,8 @@
 </head>
 <body>
     <div class="container-fluid row m-0 p-0">
-        <nav class="navbar bg-secondary navbar-dark navbar-expand-lg col-md- rounded-right shadow">
+        <div class="col-md-2" style="max-height: 400px">
+        <nav class="navbar bg-secondary navbar-dark rounded-bottom navbar-expand-lg shadow mh-100">
             <button class="navbar-toggler" type="button" data-toggle="collapse" 
                 data-target="#navbarToggler" aria-controls="navbarToggler" 
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarToggler">
                 <ul class="navbar-nav d-flex flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="index.php">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Favorites</a>
@@ -38,59 +49,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Purchases</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="logout.php">Log out</a>
+                    </li>
                 </ul>
             </div>
+        </div>
         </nav>
-        <div class="col-md-10 d-flex flex-wrap justify-content-center mb-5 p-0" id="root"></div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" i
-        ntegrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" i
-        ntegrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <div class="col-md-10">
+            <div class="col-m-12 bg-white border rounded-bottom p-5 mb-4"></div>
+            <div class="col-md-12 d-flex flex-wrap justify-content-center mb-5 p-0" id="root"></div>
+        </div>
     </div>
 
-    <script>
-        $(document).ready(function (){
-
-            // AJAX function
-            function xhr(xfunction, url) {
-                $.ajax({
-                    type: 'GET',
-                    url: url,
-                    dataType: 'JSON',
-                    success: function (result){
-                        xfunction(result);
-                    }
-                });
-            }
-
-            // Display all products request
-            function display(result) {
-
-                let products = "";
-                let id, type, price, image;
-                let len = result['data'].length;
-
-                for (let i = 0; i < len; i++) {
-                    id = result['data'][i].id;
-                    type = result['data'][i].type;
-                    price = result['data'][i].price;
-                    image = result['data'][i].image;
-                    
-                    products += `<div class="card col-6 col-sm-4 col-md-3 col-lg-2 p-0 mx-1 mt-1 shadow">
-                                    <img src=" + '${image}' + " class="card-img-top" alt="Product image">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${price}₪</h5>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                                    </div>
-                                </div>`;
-                    }
-
-                $('#root').html(products);
-            }
-
-            xhr(display, '../api/product/read.php');
-        });
-    </script>
+    <script src="scripts/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" i
+    ntegrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" i
+    ntegrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

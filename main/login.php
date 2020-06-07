@@ -17,14 +17,17 @@
         }
 
         .form{
-            background-color: #f6f6f6;
+            background-color: #ECF0F1;
         }
     </style>
 </head>
 <body>
     <div class="container-fluid row d-flex m-0">
         <form class="form col-7 col-md-5 m-auto border shadow p-3">
-            <h2 class="py-2">Log in and start your journey with us</h2>
+            <h3 class="text-secondary py-2">LOG IN, EXPLORE FINEST PRODUCTS</h3>
+            <div class="alert alert-danger alert-dismissible fade show" id="form_alert" role="alert">
+                <strong>Invalid info!</strong> You should check in on some of those fields below.
+            </div>
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -34,52 +37,15 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Password">
             </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck">
-                <label class="form-check-label" for="exampleCheck">Check me out</label>
-            </div>
             <button type="submit" id="login" class="btn btn-info m-1">Log in</button>
         </form>
     </div>
 
-
+    <script src="scripts/login.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" i
     ntegrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" i
     ntegrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script>
-        $(document).ready(function() {
-
-            // Check form user input
-            $('#login').click(function() {
-
-                let email = $('#email').val();
-                let password = $('#password').val();
-                let data = {"email": email, "password": password};
-
-                $.ajax({
-                    type: 'POST',
-                    url: '../api/user/check.php',
-                    data: data, 
-                    dataType: 'JSON',
-                    cache: false,
-                    beforeSend: function() {
-                        $('login').val("Loading..");
-                    },
-                    success: function (result){
-                        console.log(result);
-                        if (result == true) {
-
-                            window.open("index.php");
-
-                        } else {
-                            alert('You fucked up in something');
-                         }
-                    }
-                });
-            });    
-        });
-    </script>
 </body>
 </html>
