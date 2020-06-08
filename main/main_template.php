@@ -15,7 +15,7 @@
                         <a class="nav-link" href="favorite.php">Favorites</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Add product</a>
+                        <a class="nav-link" href="add_products.php">Add products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Basket</a>
