@@ -1,6 +1,6 @@
 $(document).ready(function (){
 
-    // AJAX GET function
+    // AJAX function
     function xhr1(xfunction, url) {
         $.ajax({
             type: 'GET',
@@ -12,7 +12,7 @@ $(document).ready(function (){
         });
     }
 
-    // AJAX POST function
+    // AJAX function
     function xhr2(xfunction, url, data) {
         $.ajax({
             type: 'POST',
@@ -54,7 +54,7 @@ $(document).ready(function (){
     xhr1(display, '../api/product/read.php');
 
     $('#type_filter').on('change', function() {
-        let type = $(this).val().toLowerCase();
+        let type = $(this).val();
         let data = {type: type};
 
         function check_type(result) {
@@ -81,6 +81,10 @@ $(document).ready(function (){
             $('#root').html(products);
         }
 
-        xhr2(check_type, '../api/product/read_type.php', data)
+        if (type == "none") {
+            xhr1(display, '../api/product/read.php');
+        } else {
+            xhr2(check_type, '../api/product/read_type.php', data)
+        }
     });
 });

@@ -41,11 +41,41 @@
 
         function read_type() {
 
-            $query = "SELECT * FROM ' . $this->table . ' WHERE type = :type";
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE type = :type ORDER BY added_date DESC';
 
             $stmt = $this->conn->prepare($query);
             $this->type = htmlspecialchars(strip_tags($this->type));
             $stmt->execute(['type' => $this->type]);
+
+            return $stmt;
+        }
+
+        public function read_favorite() {
+            
+            $query = 'SELECT * FROM ' . $this->table . ' AS p, classification AS c WHERE p.id = c.id AND favorite = 1 ORDER BY added_date DESC';
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+
+            return $stmt;
+        }
+
+        public function read_basket() {
+
+            $query = 'SELECT * FROM ' . $this->table . ' JOIN classification ON id WHERE basket = 1 ORDER BY added_date DESC';
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+
+            return $stmt;
+        }
+
+        public function read_purchases() {
+
+            $query = 'SELECT * FROM ' . $this->table . ' JOIN classification ON id WHERE purchased = 1 ORDER BY added_date DESC';
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
 
             return $stmt;
         }

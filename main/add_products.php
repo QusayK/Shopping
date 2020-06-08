@@ -1,19 +1,9 @@
-<?php
-    session_start();
-
-    if (!isset($_SESSION['login'])) {
-
-        header("Location: login.php");
-        die();
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping</title>
+    <title>Add products</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -21,10 +11,26 @@
         body{
             background-color: #F2F8FD;
         }
+
+        .form{
+            background-color: #ECF0F1;
+        }
+
+        .preview{
+            max-width: 150px;
+            min-height: 100px;
+            border: 1px solid black;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .preview img{
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="container-fluid row m-0 p-0">
+<div class="container-fluid row m-0 p-0">
         <div class="col-md-2" style="max-height: 400px">
             <nav class="navbar bg-secondary navbar-dark rounded-bottom navbar-expand-lg shadow mh-100">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" 
@@ -56,22 +62,34 @@
                 </div>
             </nav>
         </div>
-        <div class="col-md-10">
-            <div class="row d-flex col-m-12 bg-white border rounded-bottom shadow p-4 mb-4">
-                <select class="browser-default custom-select col-7 col-sm-5 col-md-3"  name="type_filter" id="type_filter">
-                    <option value="none" selected>- Filter products</option>
+        <form class="form col-7 col-md-5 mx-auto my-5 border shadow p-4">
+            <h3 class="text-secondary py-2">Add products to sell</h3>
+            <!--<div class="alert alert-danger alert-dismissible fade show" id="form_alert" role="alert">
+                <strong>Invalid info!</strong> You should check in on some of those fields below.
+            </div>-->
+            <div class='preview'>
+                <img src="" class="" id="img">
+            </div>
+            <div class="custom-file m-1">
+                <input type="file" class="custom-file-input" id="file">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <select class="browser-default custom-select m-1" id="type">
+                    <option value="none" selected>- Select type</option>
                     <option value="clothes">Clothes</option>
                     <option value="electronics">Electronics</option>
-                </select>
+            </select>
+            <div class="form-group m-1">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" placeholder="₪">
             </div>
-            <div class="col-md-12 d-flex flex-wrap justify-content-center mb-5 p-0" id="root"></div>
-        </div>
+            <button type="submit" id="add" class="btn btn-info m-1">Add</button>
+        </form>
     </div>
 
-    <script src="scripts/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" i
-    ntegrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
