@@ -1,12 +1,26 @@
 $(document).ready(function (){
 
-    // AJAX function
-    function xhr(xfunction, url) {
+    // AJAX GET function
+    function xhr1(xfunction, url) {
         $.ajax({
             type: 'GET',
             url: url,
             dataType: 'JSON',
-            success: function (result){
+            success: function (result)  {
+                xfunction(result);
+            }
+        });
+    }
+
+    // AJAX POST function
+    function xhr2(xfunction, url, data) {
+        $.ajax({
+            type: 'POST',
+            data: data,
+            url: url,
+            cache: false,
+            dataType: 'JSON',
+            success: function (result) {
                 xfunction(result);
             }
         });
@@ -37,5 +51,10 @@ $(document).ready(function (){
         $('#root').html(products);
     }
 
-    xhr(display, '../api/product/read.php');
+    xhr1(display, '../api/product/read.php');
+
+    $('#type_filter').on('change', function() {
+        let type = $(this).val().toLowerCase();
+
+    });
 });
