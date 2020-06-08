@@ -55,6 +55,9 @@ $(document).ready(function (){
 
     $('#type_filter').on('change', function() {
         let type = $(this).val().toLowerCase();
+        let data = {type: type};
+
+        
 
     });
 });
