@@ -39,6 +39,17 @@
             $this->image = $row['image'];
         }
 
+        function read_type() {
+
+            $query = "SELECT * FROM ' . $this->table . ' WHERE type = :type";
+
+            $stmt = $this->conn->prepare($query);
+            $this->type = htmlspecialchars(strip_tags($this->type));
+            $stmt->execute(['type' => $this->type]);
+
+            return $stmt;
+        }
+
         public function create() {
 
             $query = 'INSERT INTO ' . $this->table . '(type, price, added_date, image)

@@ -32,7 +32,7 @@ $(document).ready(function (){
         let products = "";
         let id, type, price, image;
         let len = result['data'].length;
-        console.log(result);
+        
         for (let i = 0; i < len; i++) {
             id = result['data'][i].id;
             type = result['data'][i].type;
@@ -57,7 +57,30 @@ $(document).ready(function (){
         let type = $(this).val().toLowerCase();
         let data = {type: type};
 
-        
+        function check_type(result) {
 
+            let products = "";
+            let id, type, price, image;
+            let len = result['data'].length;
+
+            for (let i = 0; i < len; i++) {
+                id = result['data'][i].id;
+                type = result['data'][i].type;
+                price = result['data'][i].price;
+                image = result['data'][i].image;
+                
+                products += `<div class="card col-6 col-sm-4 col-md-3 col-lg-2 p-0 mx-1 mt-1 shadow">
+                                <img src=" + '${image}' + " class="card-img-top" alt="Product image">
+                                <div class="card-body">
+                                    <h5 class="card-title">${price}₪</h5>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>`;
+                }
+    
+            $('#root').html(products);
+        }
+
+        xhr2(check_type, '../api/product/read_type.php', data)
     });
 });
