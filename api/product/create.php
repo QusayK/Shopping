@@ -12,7 +12,7 @@
 
     $product = new Product($db);
 
-    //if (isset($_POST)) {
+    if (($_POST['type'] != 'none') && is_numeric($_POST['price'] ) && isset($_FILES['file']['name'])) {
 
         $filename = $_FILES['file']['name'];
 
@@ -20,9 +20,9 @@
         $product->price = $_POST['price'];
         $product->image = $filename;
 
-        $location = "images/".$filename;
+        $location = "../../images/".$filename;
         $uploadOk = 1;
-        $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
+        $imageFileType = pathinfo($location, PATHINFO_EXTENSION);
         $valid_extensions = array("jpg","jpeg","png");
 
         if (!in_array(strtolower($imageFileType), $valid_extensions)) {
@@ -48,5 +48,9 @@
 
             echo 0;
         }
-    //}
+        
+    } else {
+
+       echo 0;
+    }
 ?>

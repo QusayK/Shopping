@@ -40,7 +40,7 @@ $(document).ready(function (){
             image = result['data'][i].image;
             let url = `../images/${image}`;
             
-            products += `<div class="card col-6 col-sm-4 col-md-3 col-lg-2 p-0 mx-1 mt-1 shadow">
+            products += `<div class="card col-7 col-sm-5 col-md-4 col-lg-3 p-0 mx-1 mt-1 shadow">
                             <img src=${url} class="card-img-top img-fluid" alt="Product image">
                             <div class="card-body">
                                 <h5 class="card-title">${price}₪</h5>
@@ -71,7 +71,7 @@ $(document).ready(function (){
                 image = result['data'][i].image;
                 let url = `../images/${image}`;
 
-                products += `<div class="card col-6 col-sm-4 col-md-3 col-lg-2 p-0 mx-1 mt-1 shadow">
+                products += `<div class="card col-7 col-sm-5 col-md-4 col-lg-3 p-0 mx-1 mt-1 shadow">
                                 <img src='${url}' class="card-img-top img-fluid" alt="Product image">
                                 <div class="card-body">
                                     <h5 class="card-title">${price}₪</h5>

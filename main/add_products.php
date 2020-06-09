@@ -72,16 +72,16 @@
                 </div>
             </nav>
         </div>
-        <form class="form col-7 col-md-5 mx-auto my-5 border shadow p-4" method="POST">
-            <h3 class="text-secondary py-2">Add products to sell</h3>
-            <!--<div class="alert alert-danger alert-dismissible fade show" id="form_alert" role="alert">
-                <strong>Invalid info!</strong> You should check in on some of those fields below.
-            </div>-->
+        <form class="form col-7 col-md-5 mx-auto my-5 border shadow p-4" id="form" method="POST" enctype="multipart/form-data">
+            <h3 class="text-secondary py-2">Add product to sell</h3>
+            <div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
+                <strong>Invalid!</strong> Make sure to fill the data correctly.
+            </div>
             <div class='preview'>
                 <img src="" class="" id="img">
             </div>
-            <div class="custom-file m-1">
-                <input type="file" class="custom-file-input" id="file">
+            <div class="custom-file m-1" >
+                <input type="file" class="custom-file-input" name="file" id="file">
                 <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
             <select class="browser-default custom-select m-1" id="type">
@@ -91,7 +91,7 @@
             </select>
             <div class="form-group m-1">
                 <label for="price">Price</label>
-                <input type="text" class="form-control" id="price" placeholder="₪">
+                <input type="text" class="form-control" name="price" id="price" placeholder="₪">
             </div>
             <button type="submit" id="add" class="btn btn-info m-1">Add</button>
         </form>

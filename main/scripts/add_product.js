@@ -1,40 +1,44 @@
 $(document).ready(function () {
-   
-    // Prevent form from submitting
-    $(".form").submit(function(e){
-        e.preventDefault();
-    });
 
+    $('#alert').hide();
     
-    $("#add").click(function(){
+    $("#add").on('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
 
-        var fd = new FormData();
+        var thisBtn = $(this);
+        var thisForm = thisBtn.closest("form");
+        var formData = new FormData(thisForm[0]);
+
         var files = $('#file')[0].files[0];
-        fd.append('file', files);
+        formData.append('file', files);
 
         let type, price;
 
         type = $('#type').val();
         price = $('#price').val();
 
-        fd.append('type', type);
-        fd.append('price', price);
+        formData.append('type', type);
+        formData.append('price', price);
 
-        console.log(fd);
         $.ajax({
             url: '../api/product/create.php',
             type: 'POST',
-            data: fd,
+            data: formData,
             contentType: false,
             cache: false,
-            success: function(result){
+            processData: false,
+            success: function (result) {
+
                 if (result != 0){
 
-                    $("#img").attr("src",result); 
+                    $("#img").attr("src", result); 
                     $(".preview img").show();
-                } else {
+                    $('#alert').hide();
 
-                    alert('file not uploaded');
+                } else if (result == 0) {
+
+                    $('#alert').show();
                 }
             },
         });

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2020 at 09:52 PM
+-- Generation Time: Jun 09, 2020 at 09:24 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -85,12 +85,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `type`, `price`, `added_date`, `image`) VALUES
-(1, 'clothes', 50, '2020-06-02 12:52:12', ''),
-(2, 'clothes', 35, '2020-06-02 12:52:26', ''),
-(14, 'clothes', 55, '2020-06-02 19:08:24', ''),
-(15, 'clothes', 45, '2020-06-06 19:42:27', ''),
-(16, 'clothes', 30, '2020-06-06 19:43:07', ''),
-(17, 'clothes', 30, '2020-06-06 19:43:52', '');
+(1, 'clothes', 50, '2020-06-02 12:52:12', 'image3.jpg'),
+(2, 'Electronics', 2500, '2020-06-02 12:52:26', 'image2.jpg'),
+(14, 'clothes', 55, '2020-06-02 19:08:24', 'image1.jpg'),
+(15, 'clothes', 45, '2020-06-06 19:42:27', 'image4.jpg'),
+(16, 'clothes', 30, '2020-06-06 19:43:07', 'image6.jpg'),
+(17, 'clothes', 30, '2020-06-06 19:43:52', 'image5.jpg'),
+(30, 'electronics', 3000, '2020-06-09 19:15:45', 'image8.jpg'),
+(55, 'electronics', 300, '2020-06-09 21:28:27', 'image9.jpg'),
+(74, 'electronics', 2900, '2020-06-09 22:16:41', 'image10.jpg');
 
 -- --------------------------------------------------------
 
@@ -189,7 +192,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `users`
