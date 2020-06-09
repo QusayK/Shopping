@@ -72,7 +72,7 @@
                 </div>
             </nav>
         </div>
-        <form class="form col-7 col-md-5 mx-auto my-5 border shadow p-4">
+        <form class="form col-7 col-md-5 mx-auto my-5 border shadow p-4" method="POST">
             <h3 class="text-secondary py-2">Add products to sell</h3>
             <!--<div class="alert alert-danger alert-dismissible fade show" id="form_alert" role="alert">
                 <strong>Invalid info!</strong> You should check in on some of those fields below.
@@ -91,12 +91,13 @@
             </select>
             <div class="form-group m-1">
                 <label for="price">Price</label>
-                <input type="text" class="form-control" placeholder="₪">
+                <input type="text" class="form-control" id="price" placeholder="₪">
             </div>
             <button type="submit" id="add" class="btn btn-info m-1">Add</button>
         </form>
     </div>
 
+    <script src="scripts/add_product.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"

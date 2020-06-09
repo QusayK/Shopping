@@ -19,12 +19,13 @@ $(document).ready(function() {
                 type = result[i].type;
                 price = result[i].price;
                 image = result[i].image;
-                
+                let url = `../images/${image}`;
+
                 products += `<div class="card col-6 col-sm-4 col-md-3 col-lg-2 p-0 mx-1 mt-1 shadow">
-                                <img src=" + '${image}' + " class="card-img-top" alt="Product image">
+                                <img src='${url}' class="card-img-top" alt="Product image">
                                 <div class="card-body">
                                     <h5 class="card-title">${price}₪</h5>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="#" class="btn btn-info">Go somewhere</a>
                                 </div>
                             </div>`;
                 }

@@ -12,21 +12,41 @@
 
     $product = new Product($db);
 
-    $data = json_decode(file_get_contents("php://input"));
+    //if (isset($_POST)) {
 
-    $product->type = $data->type;
-    $product->price = $data->price;
-    $product->image = $data->price;
+        $filename = $_FILES['file']['name'];
 
-    if ($product->create()) {
+        $product->type = $_POST['type'];
+        $product->price = $_POST['price'];
+        $product->image = $filename;
 
-        echo json_encode(
-            array('message' => 'Product created')
-        );
-    } else {
+        $location = "images/".$filename;
+        $uploadOk = 1;
+        $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
+        $valid_extensions = array("jpg","jpeg","png");
 
-        echo json_encode(
-            array('message' => 'Product not created')
-        );
-    }
+        if (!in_array(strtolower($imageFileType), $valid_extensions)) {
+
+            $uploadOk = 0;
+         }
+
+         if ($uploadOk == 0){
+
+            echo 0;
+         } else {
+            
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $location)){
+
+               echo $location;
+            } else {
+
+               echo 0;
+            }
+         }
+
+        if (!$product->create()) {
+
+            echo 0;
+        }
+    //}
 ?>

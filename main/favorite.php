@@ -21,6 +21,14 @@
         body{
             background-color: #F2F8FD;
         }
+
+        .card{
+            height: 400px;
+        }
+
+        .card img{
+            height: 60%;
+        }
     </style>
 </head>
 <body>
