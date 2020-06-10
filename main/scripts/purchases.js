@@ -3,18 +3,18 @@ $(document).ready(function() {
     function display_all() {
         $.ajax({
             type: 'GET',
-            url: '../api/product/read_favorite.php',
+            url: '../api/product/read_purchases.php',
             dataType: 'JSON',
             cache: false,
             beforeSend: function() {
                 $('#root').val("Loading..");
             },
-            success: function (result){
+            success: function (result) {
     
                 let products = "";
                 let id, type, price, image;
                 let len = result.length;
-                
+    
                 for (let i = 0; i < len; i++) {
                     id = result[i].id;
                     type = result[i].type;
@@ -43,7 +43,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             data: data,
-            url: '../api/product/read_type_favorite.php',
+            url: '../api/product/read_type_purchases.php',
             dataType: 'JSON',
             cache: false,
             beforeSend: function() {
@@ -87,5 +87,5 @@ $(document).ready(function() {
             check_type(data);
         }
     });
-    
+
 });    

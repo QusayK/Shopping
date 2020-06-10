@@ -39,9 +39,42 @@
             $this->image = $row['image'];
         }
 
-        function read_type() {
+        public function read_type() {
 
             $query = 'SELECT * FROM ' . $this->table . ' WHERE type = :type ORDER BY added_date DESC';
+
+            $stmt = $this->conn->prepare($query);
+            $this->type = htmlspecialchars(strip_tags($this->type));
+            $stmt->execute(['type' => $this->type]);
+
+            return $stmt;
+        }
+
+        public function read_type_favorite() {
+
+            $query = 'SELECT * FROM ' . $this->table . ' AS  p, classification AS c WHERE p.id = c.id AND type = :type AND favorite = 1 ORDER BY added_date DESC';
+
+            $stmt = $this->conn->prepare($query);
+            $this->type = htmlspecialchars(strip_tags($this->type));
+            $stmt->execute(['type' => $this->type]);
+
+            return $stmt;
+        }
+
+        public function read_type_basket() {
+
+            $query = 'SELECT * FROM ' . $this->table . ' AS  p, classification AS c WHERE p.id = c.id AND type = :type AND basket = 1 ORDER BY added_date DESC';
+
+            $stmt = $this->conn->prepare($query);
+            $this->type = htmlspecialchars(strip_tags($this->type));
+            $stmt->execute(['type' => $this->type]);
+
+            return $stmt;
+        }
+
+        public function read_type_purchases() {
+
+            $query = 'SELECT * FROM ' . $this->table . ' AS  p, classification AS c WHERE p.id = c.id AND type = :type AND purchased = 1 ORDER BY added_date DESC';
 
             $stmt = $this->conn->prepare($query);
             $this->type = htmlspecialchars(strip_tags($this->type));
@@ -62,7 +95,7 @@
 
         public function read_basket() {
 
-            $query = 'SELECT * FROM ' . $this->table . ' JOIN classification ON id WHERE basket = 1 ORDER BY added_date DESC';
+            $query = 'SELECT * FROM ' . $this->table . ' AS p, classification AS c WHERE p.id = c.id AND basket = 1 ORDER BY added_date DESC';
 
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
@@ -72,7 +105,7 @@
 
         public function read_purchases() {
 
-            $query = 'SELECT * FROM ' . $this->table . ' JOIN classification ON id WHERE purchased = 1 ORDER BY added_date DESC';
+            $query = 'SELECT * FROM ' . $this->table . ' AS p, classification AS c WHERE p.id = c.id AND purchased = 1 ORDER BY added_date DESC';
 
             $stmt = $this->conn->prepare($query);
             $stmt->execute();

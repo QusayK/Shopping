@@ -13,12 +13,11 @@
     if (isset($_POST['type'])) {
 
         $product->type = $_POST['type'];
-
-        $result = $product->read_type();
+        
+        $result = $product->read_type_favorite();
         $num = $result->rowCount();
 
         $product_arr = array();
-        $product_arr['data'] = array();
 
         if ($num > 0) {
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -32,7 +31,7 @@
                     'image' => $image
                 );
 
-                array_push($product_arr['data'], $product_items);
+                array_push($product_arr, $product_items);
             }
 
             echo json_encode($product_arr);
