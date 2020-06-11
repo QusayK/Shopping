@@ -46,6 +46,13 @@
 
             if ($stmt->execute(['name' => $this->name, 'email' => $this->email, 'password' => $this->password])) {
 
+                $sql = 'SELECT id FROM ' . $this->table . ' WHERE email = :email';
+                $stm = $this->conn->prepare($sql);
+                $stm->execute(['email' => $this->email]);
+
+                $row = $stm->fetch(PDO::FETCH_ASSOC);
+                $this->id = $row['id'];
+                
                 return true;
             } else {
 

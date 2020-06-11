@@ -1,4 +1,5 @@
 <?php
+    session_start();
     header('Allow-Control-Access-Origin: *');
     header('Content-Type: application/json');
 
@@ -13,7 +14,8 @@
     if (isset($_POST['type'])) {
 
         $product->type = $_POST['type'];
-        
+        $product->uid = $_SESSION['login'];
+
         $result = $product->read_type_purchases();
         $num = $result->rowCount();
 

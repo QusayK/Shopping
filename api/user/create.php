@@ -1,4 +1,5 @@
 <?php
+    session_start();
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
     header('Access-Control-Allow-Methods: POST');
@@ -12,21 +13,23 @@
 
     $user = new User($db);
 
-    $data = json_decode(file_get_contents("php://input"));
+    if (($_POST['name'] != "") && ($_POST['email'] != "") && ($_POST['password'] != "")) {
 
-    $user->name = $data->name;
-    $user->email = $data->email;
-    $user->password = $data->password;
+        $user->name = $_POST['name'];
+        $user->email = $_POST['email'];
+        $user->password = $_POST['password'];
 
-    if ($user->create()) {
+        if ($user->create()) {
 
-        echo json_encode(
-            array('message' => 'User created')
-        );
-    } else {
-        
-        echo json_encode(
-            array('message' => 'User not created')
-        );
-    }
+            $_SESSION['login'] = $user->id;
+            
+            echo 'true';
+        } else {
+            
+            echo 'false';
+        }
+   } else {
+
+        echo 'false';
+   }
 ?>

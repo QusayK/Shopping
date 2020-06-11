@@ -14,7 +14,7 @@
     if (isset($_POST['type'])) {
 
         $product->type = $_POST['type'];
-        $product->uid = $_SESSION['id'];
+        $product->uid = $_SESSION['login'];
 
         $result = $product->read_type_basket();
         $num = $result->rowCount();

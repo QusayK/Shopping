@@ -8,20 +8,21 @@ $(document).ready(function() {
     });
 
     // Check form user input
-    $('#login').click(function() {
+    $('#signup').click(function() {
 
+        let name = $('#name').val();
         let email = $('#email').val();
         let password = $('#password').val();
-        let data = {email: email, password: password};
-
+        let data = {name: name, email: email, password: password};
+        
         $.ajax({
             type: 'POST',
-            url: '../api/user/check.php',
+            url: '../api/user/create.php',
             data: data, 
             dataType: 'JSON',
             cache: false,
             beforeSend: function() {
-                $('#login').val("Loading..");
+                $('#signup').val("Loading..");
             },
             success: function (result) {
                 
