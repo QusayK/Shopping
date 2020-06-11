@@ -8,6 +8,7 @@
         public $type;
         public $price;
         public $image;
+        public $uid;
 
         public function __construct($db) {
 
@@ -39,7 +40,7 @@
             $this->image = $row['image'];
         }
 
-        function read_type() {
+        public function read_type() {
 
             $query = 'SELECT * FROM ' . $this->table . ' WHERE type = :type ORDER BY added_date DESC';
 
@@ -50,32 +51,70 @@
             return $stmt;
         }
 
-        public function read_favorite() {
-            
-            $query = 'SELECT * FROM ' . $this->table . ' AS p, classification AS c WHERE p.id = c.id AND favorite = 1 ORDER BY added_date DESC';
+        public function read_type_favorite() {
+
+            $query = 'SELECT * FROM ' . $this->table . ' AS  p, classification AS c WHERE p.id = c.id  AND c.uid = :uid AND type = :type AND favorite = 1 ORDER BY added_date DESC';
 
             $stmt = $this->conn->prepare($query);
-            $stmt->execute();
+            $this->type = htmlspecialchars(strip_tags($this->type));
+            $this->uid = htmlspecialchars(strip_tags($this->uid));
+            $stmt->execute(['uid' => $this->uid, 'type' => $this->type]);
+
+            return $stmt;
+        }
+
+        public function read_type_basket() {
+
+            $query = 'SELECT * FROM ' . $this->table . ' AS  p, classification AS c WHERE p.id = c.id AND c.uid = :uid AND type = :type AND basket = 1 ORDER BY added_date DESC';
+
+            $stmt = $this->conn->prepare($query);
+            $this->type = htmlspecialchars(strip_tags($this->type));
+            $this->uid = htmlspecialchars(strip_tags($this->uid));
+            $stmt->execute(['uid' => $this->uid, 'type' => $this->type]);
+
+            return $stmt;
+        }
+
+        public function read_type_purchases() {
+
+            $query = 'SELECT * FROM ' . $this->table . ' AS  p, classification AS c WHERE p.id = c.id  AND c.uid = :uid AND type = :type AND purchased = 1 ORDER BY added_date DESC';
+
+            $stmt = $this->conn->prepare($query);
+            $this->type = htmlspecialchars(strip_tags($this->type));
+            $this->uid = htmlspecialchars(strip_tags($this->uid));
+            $stmt->execute(['uid' => $this->uid, 'type' => $this->type]);
+            return $stmt;
+        }
+
+        public function read_favorite() {
+            
+            $query = 'SELECT * FROM ' . $this->table . ' AS p, classification AS c WHERE p.id = c.id AND c.uid = :uid AND favorite = 1 ORDER BY added_date DESC';
+
+            $stmt = $this->conn->prepare($query);
+            $this->uid = htmlspecialchars(strip_tags($this->uid));
+            $stmt->execute(['uid' => $this->uid]);
 
             return $stmt;
         }
 
         public function read_basket() {
 
-            $query = 'SELECT * FROM ' . $this->table . ' JOIN classification ON id WHERE basket = 1 ORDER BY added_date DESC';
+            $query = 'SELECT * FROM ' . $this->table . ' AS p, classification AS c WHERE p.id = c.id AND c.uid = :uid AND basket = 1 ORDER BY added_date DESC';
 
             $stmt = $this->conn->prepare($query);
-            $stmt->execute();
+            $this->uid = htmlspecialchars(strip_tags($this->uid));
+            $stmt->execute(['uid' => $this->uid]);
 
             return $stmt;
         }
 
         public function read_purchases() {
 
-            $query = 'SELECT * FROM ' . $this->table . ' JOIN classification ON id WHERE purchased = 1 ORDER BY added_date DESC';
+            $query = 'SELECT * FROM ' . $this->table . ' AS p, classification AS c WHERE p.id = c.id AND c.uid = :uid AND purchased = 1 ORDER BY added_date DESC';
 
             $stmt = $this->conn->prepare($query);
-            $stmt->execute();
+            $this->uid = htmlspecialchars(strip_tags($this->uid));
+            $stmt->execute(['uid' => $this->uid]);
 
             return $stmt;
         }

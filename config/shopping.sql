@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2020 at 09:24 PM
+-- Generation Time: Jun 10, 2020 at 01:01 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -93,7 +93,8 @@ INSERT INTO `products` (`id`, `type`, `price`, `added_date`, `image`) VALUES
 (17, 'clothes', 30, '2020-06-06 19:43:52', 'image5.jpg'),
 (30, 'electronics', 3000, '2020-06-09 19:15:45', 'image8.jpg'),
 (55, 'electronics', 300, '2020-06-09 21:28:27', 'image9.jpg'),
-(74, 'electronics', 2900, '2020-06-09 22:16:41', 'image10.jpg');
+(74, 'electronics', 2900, '2020-06-09 22:16:41', 'image10.jpg'),
+(75, 'electronics', 3200, '2020-06-10 11:21:20', 'image7.jpg');
 
 -- --------------------------------------------------------
 
@@ -192,7 +193,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `users`

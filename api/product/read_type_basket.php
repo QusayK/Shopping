@@ -1,4 +1,5 @@
 <?php
+    session_start();
     header('Allow-Control-Access-Origin: *');
     header('Content-Type: application/json');
 
@@ -13,12 +14,12 @@
     if (isset($_POST['type'])) {
 
         $product->type = $_POST['type'];
+        $product->uid = $_SESSION['id'];
 
-        $result = $product->read_type();
+        $result = $product->read_type_basket();
         $num = $result->rowCount();
 
         $product_arr = array();
-        $product_arr['data'] = array();
 
         if ($num > 0) {
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -32,7 +33,7 @@
                     'image' => $image
                 );
 
-                array_push($product_arr['data'], $product_items);
+                array_push($product_arr, $product_items);
             }
 
             echo json_encode($product_arr);

@@ -14,7 +14,7 @@
     $uid = $_SESSION['login'];
     $product->uid = $uid;
 
-    $result = $product->read_favorite();
+    $result = $product->read_purchases();
     $num = $result->rowCount();
 
     $product_arr = array();

@@ -23,13 +23,15 @@ $(document).ready(function() {
             beforeSend: function() {
                 $('#login').val("Loading..");
             },
-            success: function (result){
+            success: function (result) {
 
                 if (result == true) {
 
+                    $('#form_alert').hide();
                     window.location = "index.php";
 
-                } else if (result == false){
+                } else if (result == false) {
+
                     $('#form_alert').show();
                  }
             }

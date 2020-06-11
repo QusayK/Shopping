@@ -35,6 +35,8 @@
         }
 
         .preview img{
+            width: 150px;
+            height: 100px;
             display: none;
         }
     </style>
@@ -54,16 +56,16 @@
                             <a class="nav-link" href="index.php">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="favorite.php">Favorites</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="add_products.php">Add products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Basket</a>
+                            <a class="nav-link" href="favorite.php">Favorites</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Purchases</a>
+                            <a class="nav-link" href="basket.php">Basket</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="purchases.php">Purchases</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="logout.php">Log out</a>
@@ -72,13 +74,13 @@
                 </div>
             </nav>
         </div>
-        <form class="form col-7 col-md-5 mx-auto my-5 border shadow p-4" id="form" method="POST" enctype="multipart/form-data">
+        <form class="form col-7 col-md-5 col-lg-4 mx-auto my-5 border shadow p-4" id="form" method="POST" enctype="multipart/form-data">
             <h3 class="text-secondary py-2">Add product to sell</h3>
             <div class="alert alert-danger alert-dismissible fade show" id="alert" role="alert">
                 <strong>Invalid!</strong> Make sure to fill the data correctly.
             </div>
             <div class='preview'>
-                <img src="" class="" id="img">
+                <img src="" class="img-fluid" id="img">
             </div>
             <div class="custom-file m-1" >
                 <input type="file" class="custom-file-input" name="file" id="file">

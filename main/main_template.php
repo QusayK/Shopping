@@ -12,16 +12,16 @@
                         <a class="nav-link" href="index.php">Products</a>
                     </li>
                     <li class="nav-item">
+                            <a class="nav-link" href="add_products.php">Add products</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="favorite.php">Favorites</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="add_products.php">Add products</a>
+                        <a class="nav-link" href="basket.php">Basket</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Basket</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Purchases</a>
+                        <a class="nav-link" href="purchases.php">Purchases</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="logout.php">Log out</a>

@@ -21,6 +21,7 @@
         $product->image = $filename;
 
         $location = "../../images/".$filename;
+        $location_ = "../images/".$filename; 
         $uploadOk = 1;
         $imageFileType = pathinfo($location, PATHINFO_EXTENSION);
         $valid_extensions = array("jpg","jpeg","png");
@@ -37,7 +38,9 @@
             
             if (move_uploaded_file($_FILES['file']['tmp_name'], $location)){
 
-               echo $location;
+               echo json_encode(
+                  array('location' => $location_)
+               );
             } else {
 
                echo 0;

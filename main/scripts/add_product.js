@@ -29,10 +29,9 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (result) {
-
-                if (result != 0){
-
-                    $("#img").attr("src", result); 
+                
+                if (result != 0) {
+                    $("#img").attr("src", result.location);
                     $(".preview img").show();
                     $('#alert').hide();
 
@@ -40,7 +39,7 @@ $(document).ready(function () {
 
                     $('#alert').show();
                 }
-            },
+            }
         });
     });
 });
