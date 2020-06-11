@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2020 at 01:01 PM
+-- Generation Time: Jun 11, 2020 at 10:48 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- PHP Version: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `classification` (
+  `uid` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `favorite` int(11) NOT NULL DEFAULT 0,
   `basket` int(11) NOT NULL DEFAULT 0,
@@ -39,9 +39,9 @@ CREATE TABLE `classification` (
 -- Dumping data for table `classification`
 --
 
-INSERT INTO `classification` (`id`, `favorite`, `basket`, `purchased`) VALUES
-(1, 1, 0, 1),
-(2, 0, 1, 0);
+INSERT INTO `classification` (`uid`, `id`, `favorite`, `basket`, `purchased`) VALUES
+(1, 1, 1, 0, 1),
+(1, 2, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -93,8 +93,7 @@ INSERT INTO `products` (`id`, `type`, `price`, `added_date`, `image`) VALUES
 (17, 'clothes', 30, '2020-06-06 19:43:52', 'image5.jpg'),
 (30, 'electronics', 3000, '2020-06-09 19:15:45', 'image8.jpg'),
 (55, 'electronics', 300, '2020-06-09 21:28:27', 'image9.jpg'),
-(74, 'electronics', 2900, '2020-06-09 22:16:41', 'image10.jpg'),
-(75, 'electronics', 3200, '2020-06-10 11:21:20', 'image7.jpg');
+(74, 'electronics', 2900, '2020-06-09 22:16:41', 'image10.jpg');
 
 -- --------------------------------------------------------
 
@@ -150,7 +149,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
 -- Indexes for table `classification`
 --
 ALTER TABLE `classification`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`uid`,`id`),
+  ADD KEY `classification_p_id` (`id`);
 
 --
 -- Indexes for table `comments`
@@ -193,7 +193,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -209,7 +209,8 @@ ALTER TABLE `users`
 -- Constraints for table `classification`
 --
 ALTER TABLE `classification`
-  ADD CONSTRAINT `classification_fk` FOREIGN KEY (`id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `classification_p_id` FOREIGN KEY (`id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `classification_u_id` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `comments`
