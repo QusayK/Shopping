@@ -40,11 +40,16 @@ $(document).ready(function (){
             image = result['data'][i].image;
             let url = `../images/${image}`;
             
-            products += `<div class="card col-7 col-sm-5 col-md-4 col-lg-3 p-0 mx-1 mt-1 shadow">
+            products += `<div class="card col-9 col-sm-6 col-md-5 col-lg-3 p-0 mr-1 mt-1 shadow">
                             <img src=${url} class="card-img-top img-fluid" alt="Product image">
                             <div class="card-body">
                                 <h5 class="card-title">${price}₪</h5>
-                                <a href="#" class="btn btn-info">Go somewhere</a>
+                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#reviewsModal">
+                                    Reviews
+                                </button>
+                                <a href="#" class="d-block m-1">Add to favorites</a>
+                                <a href="#" class="d-block m-1">Add to basket</a>
+                                <a href="#" class="btn btn-info">Buy</a>
                             </div>
                         </div>`;
             }
@@ -71,7 +76,7 @@ $(document).ready(function (){
                             <img src='${url}' class="card-img-top img-fluid" alt="Product image">
                             <div class="card-body">
                                 <h5 class="card-title">${price}₪</h5>
-                                <a href="#" class="btn btn-info">Go somewhere</a>
+                                <button type="button" class="btn btn-outline-secondary data-toggle="modal" data-target="#reviewsModal">Reviews</button>
                             </div>
                         </div>`;
             }

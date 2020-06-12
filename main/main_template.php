@@ -31,12 +31,13 @@
         </nav>
     </div>
     <div class="col-md-10">
-        <div class="row d-flex col-m-12 bg-white border rounded-bottom shadow p-4 mb-4">
+        <div class="row d-flex justify-content-between col-m-12 bg-white border rounded-bottom shadow p-4 mb-4">
             <select class="browser-default custom-select col-7 col-sm-5 col-md-3"  name="type_filter" id="type_filter">
                 <option value="none" selected>- Filter products</option>
                 <option value="clothes">Clothes</option>
                 <option value="electronics">Electronics</option>
             </select>
+            <h2 class="text-secondary">ONLINE <small><sup><strong class="text-info">MARKET</strong></sup></small></h2>
         </div>
         <div class="col-md-12 d-flex flex-wrap justify-content-center mb-5 p-0" id="root"></div>
     </div>

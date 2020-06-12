@@ -23,11 +23,11 @@
         }
 
         .card{
-            height: 400px;
+            height: 450px;
         }
 
         .card img{
-            height: 60%;
+            height: 50%;
         }
     </style>
 </head>
@@ -65,14 +65,34 @@
             </nav>
         </div>
         <div class="col-md-10">
-            <div class="row d-flex col-m-12 bg-white border rounded-bottom shadow p-4 mb-4">
+            <div class="row d-flex justify-content-between col-m-12 bg-white border rounded-bottom shadow p-4 mb-4">
                 <select class="browser-default custom-select col-7 col-sm-5 col-md-3"  name="type_filter" id="type_filter">
                     <option value="none" selected>- Filter products</option>
                     <option value="clothes">Clothes</option>
                     <option value="electronics">Electronics</option>
                 </select>
+                <h2 class="text-secondary">ONLINE <small><sup><strong class="text-info">MARKET</strong></sup></small></h2>
             </div>
             <div class="col-md-12 d-flex flex-wrap justify-content-center mb-5 p-0" id="root"></div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="reviewsModal" tabindex="-1" role="dialog" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewsModalLabel">Product reviews</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...111
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 
