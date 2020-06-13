@@ -1,5 +1,9 @@
 $(document).ready(function (){
 
+    /*var imported = document.createElement('script');
+    imported.src = 'scripts/comment.js';
+    document.head.appendChild(imported);*/
+
     // AJAX function
     function xhr1(xfunction, url) {
         $.ajax({
@@ -40,20 +44,39 @@ $(document).ready(function (){
             image = result['data'][i].image;
             let url = `../images/${image}`;
             
-            products += `<div class="card col-9 col-sm-6 col-md-5 col-lg-3 p-0 mr-1 mt-1 shadow">
+            products += `<script src="scripts/comment.js"></script><div class="card col-9 col-sm-6 col-md-5 col-lg-3 p-0 mr-1 mt-1 shadow">
                             <img src=${url} class="card-img-top img-fluid" alt="Product image">
                             <div class="card-body">
                                 <h5 class="card-title">${price}₪</h5>
                                 <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#reviewsModal">
                                     Reviews
                                 </button>
+                                <div class="modal fade" id="reviewsModal" tabindex="-1" role="dialog" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="reviewsModalLabel">Product reviews</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h6>Comments</h6>
+                                                <div id="comment"></div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <a href="#" class="d-block m-1">Add to favorites</a>
                                 <a href="#" class="d-block m-1">Add to basket</a>
                                 <a href="#" class="btn btn-info">Buy</a>
                             </div>
                         </div>`;
-            }
-
+        }
+        
         $('#root').html(products);
     }
 
@@ -95,4 +118,6 @@ $(document).ready(function (){
             xhr2(check_type, '../api/product/read_type.php', data)
         }
     });
+
+    
 });
