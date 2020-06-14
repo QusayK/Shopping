@@ -1,8 +1,9 @@
 <?php
-     header('Access-Control-Allow-Origin: *');
-     header('Content-Type: application/json');
-     header('Access-Control-Allow-Methods: POST');
-     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods,Content-Type, Authorization, X-Requested-With');
+    session_start();
+    header('Access-Control-Allow-Origin: *');
+    header('Content-Type: application/json');
+    header('Access-Control-Allow-Methods: POST');
+    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods,Content-Type, Authorization, X-Requested-With');
  
     include_once '../../config/database.php';
     include_once '../../models/comments.php';
@@ -12,21 +13,23 @@
 
     $comments = new Comments($db);
 
-    $data = json_decode(file_get_contents("php://input"));
+    if(isset($_POST['comment']) && $_POST['comment'] != '') {
+        $comments->user_id = $_SESSION['login'];
+        $comments->product_id = $_POST['product_id'];
+        $comments->comment = $_POST['comment'];
 
-    $comments->user_id = $data->user_id;
-    $comments->product_id = $data->product_id;
-    $comments->comment = $data->comment;
+        if ($comments->create()) {
 
-    if ($comments->create()) {
-
-        echo json_encode(
-            array('message' => 'Comment created')
-        );
+            echo json_encode(
+                array('message' => 'Comment created')
+            );
+        } else {
+            
+            echo json_encode(
+                array('message' => 'Comment not created')
+            );
+        }
     } else {
-        
-        echo json_encode(
-            array('message' => 'Comment not created')
-        );
+        echo 0;
     }
 ?>
