@@ -1,8 +1,5 @@
 $(document).ready(function (){
-
-    /*var imported = document.createElement('script');
-    imported.src = 'scripts/comment.js';
-    document.head.appendChild(imported);*/
+    var ids = [];
 
     // AJAX function
     function xhr1(xfunction, url) {
@@ -39,6 +36,7 @@ $(document).ready(function (){
         
         for (let i = 0; i < len; i++) {
             id = result['data'][i].id;
+            ids.push(id);
             type = result['data'][i].type;
             price = result['data'][i].price;
             image = result['data'][i].image;

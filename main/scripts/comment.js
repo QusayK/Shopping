@@ -1,4 +1,20 @@
-$(document).rady(function () {
+$(document).ready(function () {
 
-    $('#test').html('test');
+    $.getScript("scripts/index.js", function() {
+        console.log(ids);
+     });
+
+    console.log(ids);
+    function xhr(xfunction, url) {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'JSON',
+            success: function(result) {
+                xfunction(result);
+            }
+        });
+    }
+
+
 });
