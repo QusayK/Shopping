@@ -40,7 +40,7 @@ $(document).ready(function (){
             image = result['data'][i].image;
             let url = `../images/${image}`;
             
-            products += `</script><div class="card col-9 col-sm-6 col-md-5 col-lg-3 p-0 mr-1 mt-1 shadow">
+            products += `<div class="card col-9 col-sm-6 col-md-5 col-lg-3 p-0 mr-1 mt-1 shadow">
                             <img src=${url} class="card-img-top img-fluid" alt="Product image">
                             <div class="card-body">
                                 <h5 class="card-title">${price}₪</h5>
