@@ -1,4 +1,5 @@
 <?php
+    session_start();
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
     header('Access-Control-Allow-Methods: POST');
@@ -12,21 +13,21 @@
 
     $rating = new Rating($db);
 
-    $data = json_decode(file_get_contents("php://input"));
 
-    $rating->user_id = $data->user_id;
-    $rating->product_id = $data->product_id;
-    $rating->rating = $data->rating;
+if (isset($_POST['rating']) && ($_POST['rating'] != '')) {
+    $rating->user_id = $_SESSION['login'];
+    $rating->product_id = $_POST['product_id'];
+    $rating->rating = $_POST['rating'];
 
     if ($rating->create()) {
 
-        echo json_encode(
-            array('message' => 'You rated the product')
-        );
+        echo 1;
     } else {
 
-        echo json_encode(
-            array('mesage' => 'Rating failed')
-        );
+        echo 0;
     }
+} else {
+
+    echo 0;
+}
 ?>

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
 
@@ -10,7 +11,7 @@
 
     $rating = new Rating($db);
 
-    $rating->user_id = isset($_GET['uid']) ? $_GET['uid'] : die();
+    $rating->user_id = $_SESSION['login'];
     $rating->product_id = isset($_GET['pid']) ? $_GET['pid'] : die();
     $rating->read_single();
 
