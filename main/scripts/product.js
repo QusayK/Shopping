@@ -97,7 +97,7 @@ $(document).ready(function () {
         product = `<div class="card col-12 p-0 mr-1 mt-1" style="background: lightgray">
                     <img src=${url} class="card-img-top img-fluid" alt="Product image">
                     <div class="card-body">
-                        <div id="rateYo"></div>
+                        <div id="rateYo_product"></div>
                         <h5 class="card-title">${price}₪</h5>
                         <a href="#" class="btn btn-info">Buy</a>
                     </div>

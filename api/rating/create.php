@@ -14,20 +14,20 @@
     $rating = new Rating($db);
 
 
-if (isset($_POST['rating']) && ($_POST['rating'] != '')) {
-    $rating->user_id = $_SESSION['login'];
-    $rating->product_id = $_POST['product_id'];
-    $rating->rating = $_POST['rating'];
+    if (isset($_POST['rating']) && ($_POST['rating'] != '')) {
+        $rating->user_id = $_SESSION['login'];
+        $rating->product_id = $_POST['product_id'];
+        $rating->rating = $_POST['rating'];
 
-    if ($rating->create()) {
+        if ($rating->create()) {
 
-        echo 1;
+            echo 1;
+        } else {
+
+            echo 0;
+        }
     } else {
 
         echo 0;
     }
-} else {
-
-    echo 0;
-}
 ?>

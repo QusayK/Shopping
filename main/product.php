@@ -36,8 +36,9 @@
                         <div class="ml-1 pl-2"><input type="submit" class="btn btn-info p-1" id="add" name="add" value="Rate"></div>
                     </div>    
                     <div>
-                        <div class="overall-rating" id="overall-rating"></div>
-                        <div class="number-of-votes" id="number-of-votes"></div>
+                        <span class="overall-rating">Overall rating: <span id="overall-rating"></span></span>
+                        <div class="your-rating">Your rating: <span id="your-rating"></span></div>
+                        <div class="number-of-votes">Number of votes: <span id="number-of-votes"></span></div>
                     </div>
                     <h2 class="text-secondary">ONLINE <small><sup><strong class="text-info">MARKET</strong></sup></small></h2>
                 </div>

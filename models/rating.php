@@ -15,7 +15,7 @@
 
         public function read() {
 
-            $query = 'SELECT product_id, AVG(rating) AS rating, COUNT(rating) AS ratings_num 
+            $query = 'SELECT product_id, ROUND(AVG(rating), 1) AS rating, COUNT(rating) AS ratings_num 
             FROM ' . $this->table . ' WHERE product_id = :product_id';
 
             $stmt = $this->conn->prepare($query);
