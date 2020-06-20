@@ -23,11 +23,11 @@
         }
 
         .card{
-            height: 400px;
+            height: 450px;
         }
 
         .card img{
-            height: 60%;
+            height: 50%;
         }
     </style>
 </head>

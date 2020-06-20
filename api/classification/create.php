@@ -20,12 +20,8 @@
      $cl->purchased = $data->purchased;
 
      if ($cl->create()) {
-        echo json_encode(
-            array('message' => 'Product was classified')
-        );
+        echo 1;
      } else {
-        echo json_encode(
-            array('message' => 'Product was not classified')
-        );
+        echo 0;
      }
 ?>

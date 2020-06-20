@@ -1,5 +1,21 @@
 $(document).ready(function() {
 
+    function remove_from_favorites (id) {
+
+        $.ajax({
+            type: 'GET',
+            url: '../api/classification/remove_from_favorites.php?id='+id,
+            dataType: 'JSON',
+            success: function (result)  {
+               
+                if (result) {
+
+                    window.location = "index.php";
+                }
+            }
+        });
+    }
+
     function display_all() {
         $.ajax({
             type: 'GET',
@@ -22,12 +38,17 @@ $(document).ready(function() {
                     image = result[i].image;
                     let url = `../images/${image}`;
     
-                    products += `<div class="card col-7 col-sm-5 col-md-4 col-lg-3 p-0 mx-1 mt-1 shadow">
-                                    <img src='${url}' class="card-img-top" alt="Product image">
+                    products +=  `<div class="card col-9 col-sm-6 col-md-5 col-lg-3 p-0 mr-1 mt-1 shadow">
+                                    <img src=${url} class="card-img-top img-fluid" alt="Product image">
                                     <div class="card-body">
                                         <h5 class="card-title">${price}₪</h5>
-                                        <a href="#" class="btn btn-info">Go somewhere</a>
-                                    </div>
+                                        <button type="button" class="btn btn-outline-secondary">
+                                            <a href="product.php?id=${id}" target="_blank">Review</a>
+                                        </button>
+                                        <a href="#" onclick= class="d-block m-1">Remove from favorites</a>
+                                        <a href="#"  class="d-block m-1">Add to basket</a>
+                                        <a href="#"  class="btn btn-info">Buy</a>
+                                    </div> 
                                 </div>`;
                     }
     

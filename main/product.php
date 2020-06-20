@@ -29,7 +29,8 @@
             </div>
             <div class="col-12 col-lg-10">
                 <div class="row d-flex justify-content-between col-m-12 bg-white border rounded-bottom shadow p-4 mb-4">
-                   <div>
+                  <div class="d-flex col-12 col-md-3 justify-content-between">
+                    <div>
                         <div id="rateYo"></div>
                         <span class="result ml-1 pl-2" id="result">0</span>
                         <input type="hidden" name="rating" id="rating">
@@ -40,6 +41,7 @@
                         <div class="your-rating">Your rating: <span id="your-rating"></span></div>
                         <div class="number-of-votes">Number of votes: <span id="number-of-votes"></span></div>
                     </div>
+                  </div>
                     <h2 class="text-secondary">ONLINE <small><sup><strong class="text-info">MARKET</strong></sup></small></h2>
                 </div>
                 <div class="col-md-12 d-flex flex-wrap justify-content-start mb-5 p-0 shadow" style="background-color: #FAFAFA">

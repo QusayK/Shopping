@@ -5,6 +5,7 @@
         private $table = "classification";
 
 
+        public $uid;
         public $id;
         public $favorite;
         public $basket;
@@ -90,6 +91,41 @@
                 printf('Error: %s.\n', $stmt->error);
                 return false;
             }
+        }
+
+        public function add_to_favorite() {
+
+            $query = 'INSERT INTO ' . $this->table . ' SET uid = :uid, id = :id, favorite = 1';
+
+            $stmt = $this->conn->prepare($query);
+
+            $this->uid = htmlspecialchars(strip_tags($this->uid));
+            $this->id = htmlspecialchars(strip_tags($this->id));
+
+            if ($stmt->execute(['uid' => $this->uid, 'id' => $this->id])) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+
+        public function remove_from_favorites() {
+
+            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id AND uid = :uid';
+
+            $stmt = $this->conn->prepare($query);
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $this->uid = htmlspecialchars(strip_tags($this->uid));
+
+           if ($stmt->execute(['id' => $this->id, 'uid' => $this->uid])) {
+
+                return 1;
+           } else {
+
+                return 0;
+           }
         }
     }
 ?>
